@@ -185,7 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const msg = `Hi! I'd like to book a slot at High Gloss Detailing Studio.%0A%0A*Name:* ${encodeURIComponent(name)}%0A*Phone:* ${encodeURIComponent(phone)}%0A*Service:* ${encodeURIComponent(service)}%0A*Date:* ${encodeURIComponent(date)}%0A*Time:* ${encodeURIComponent(time)}${notes ? '%0A*Notes:* ' + encodeURIComponent(notes) : ''}`;
 
       // Open WhatsApp with pre-filled message
-      window.open(`https://wa.me/919876543210?text=${msg}`, '_blank');
+      window.open(`https://wa.me/919966611353?text=${msg}`, '_blank');
 
       // Show confirmation
       const btn = document.getElementById('btn-cta-main');
