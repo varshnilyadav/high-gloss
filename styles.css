@@ -156,10 +156,15 @@ a{text-decoration:none;color:inherit}ul{list-style:none}img{max-width:100%;displ
 .booking-form .cta-btn{width:100%;text-align:center;margin-top:8px;opacity:1;transform:none}
 .form-disclaimer{font-size:.72rem;color:var(--gray-dim);text-align:center;margin-top:4px}
 
-/* WHATSAPP */
-.whatsapp-fab{position:fixed;bottom:28px;right:28px;z-index:90;width:56px;height:56px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.35);transition:transform .3s,box-shadow .3s;animation:waP 3s ease-in-out infinite}
+/* WHATSAPP & INSTA */
+.fab-stack{position:fixed;bottom:28px;right:28px;z-index:90;display:flex;flex-direction:column;gap:14px;align-items:center}
+.whatsapp-fab,.insta-fab{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:transform .3s,box-shadow .3s}
+.whatsapp-fab{background:#25D366;box-shadow:0 4px 20px rgba(37,211,102,.35);animation:waP 3s ease-in-out infinite}
 .whatsapp-fab:hover{transform:scale(1.1);box-shadow:0 6px 30px rgba(37,211,102,.5)}
+.insta-fab{background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);box-shadow:0 4px 20px rgba(225,48,108,.3);animation:igP 3s ease-in-out infinite .5s}
+.insta-fab:hover{transform:scale(1.1);box-shadow:0 6px 30px rgba(225,48,108,.5)}
 @keyframes waP{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.35)}50%{box-shadow:0 4px 30px rgba(37,211,102,.55),0 0 0 10px rgba(37,211,102,.1)}}
+@keyframes igP{0%,100%{box-shadow:0 4px 20px rgba(225,48,108,.3)}50%{box-shadow:0 4px 30px rgba(225,48,108,.5),0 0 0 10px rgba(225,48,108,.08)}}
 
 /* FOOTER */
 #footer{padding:60px 0 30px;border-top:1px solid var(--border)}
