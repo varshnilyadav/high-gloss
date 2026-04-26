@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>High Gloss Detailing Studio | Premium Automotive Detailing</title>
+  <meta name="description" content="High Gloss Detailing Studio — Premium ceramic coating, paint protection film, and interior restoration services. Experience the art of automotive perfection.">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+</head>
+<body>
+
+  <!-- Carbon Fiber Background -->
+  <div class="carbon-bg"></div>
+
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="loader-logo">HIGH <span>GLOSS</span></div>
+    <div class="loader-bar-track"><div class="loader-bar"></div></div>
+  </div>
+
+  <!-- Header -->
+  <header id="header">
+    <nav class="nav-inner">
+      <a href="#" class="logo">HIGH<span>GLOSS</span></a>
+      <div class="nav-links" id="navLinks">
+        <a href="#services">Services</a>
+        <a href="#process">Process</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#booking">Booking</a>
+        <a href="#location">Location</a>
+        <a href="#contact-cta"><button class="btn-book" id="btn-book-nav">Book Now</button></a>
+      </div>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero">
+    <div class="hero-bg" id="heroBg">
+      <img src="assets/hero-car.png" alt="Luxury car with ceramic coating shimmer" loading="eager">
+      <div class="shimmer-overlay" id="shimmerOverlay"></div>
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="hero-tagline">Premium Automotive Detailing</span>
+      <h1 class="hero-title">THE ART OF<br><span class="accent">PERFECTION</span></h1>
+      <p class="hero-sub">Where precision engineering meets flawless finish. We don't just detail cars — we reveal their true character.</p>
+      <div class="hero-cta">
+        <button class="btn-book" id="btn-hero-cta" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Book Your Slot</button>
+      </div>
+    </div>
+    <div class="hero-brands">
+      <span>TRUSTED BY OWNERS OF</span>
+      <div class="brand-logos">
+        <span class="brand-name">Mercedes-Benz</span>
+        <span class="brand-dot"></span>
+        <span class="brand-name">Audi</span>
+        <span class="brand-dot"></span>
+        <span class="brand-name">Porsche</span>
+        <span class="brand-dot"></span>
+        <span class="brand-name">BMW</span>
+        <span class="brand-dot"></span>
+        <span class="brand-name">Bentley</span>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- Angled Divider -->
+  <div class="angled-divider"></div>
+
+  <!-- Services Section -->
+  <section id="services">
+    <div class="container">
+      <div class="services-header">
+        <span class="section-label">What We Offer</span>
+        <h2 class="section-title">Signature Services</h2>
+        <p class="section-desc" style="margin: 0 auto;">Each service is executed with surgical precision, using only the finest products and techniques in the industry.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-img-wrap">
+            <img src="assets/diamond-finish.png" alt="Diamond ceramic coating finish" loading="lazy">
+            <span class="service-number">01</span>
+          </div>
+          <div class="service-body">
+            <h3>Diamond Finish</h3>
+            <p>Multi-stage paint correction followed by a 9H ceramic coating that delivers mirror-like depth and years of protection against the elements.</p>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-img-wrap">
+            <img src="assets/self-healing-wrap.png" alt="Self-healing paint protection film" loading="lazy">
+            <span class="service-number">02</span>
+          </div>
+          <div class="service-body">
+            <h3>Self-Healing Wraps</h3>
+            <p>Invisible thermoplastic urethane film that self-heals scratches with heat, preserving your vehicle's pristine factory finish indefinitely.</p>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-img-wrap">
+            <img src="assets/interior-restoration.png" alt="Premium interior leather restoration" loading="lazy">
+            <span class="service-number">03</span>
+          </div>
+          <div class="service-body">
+            <h3>Interior Restoration</h3>
+            <p>Full leather reconditioning, deep-clean extraction, and cabin detailing that restores your interior to better-than-showroom condition.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section id="process">
+    <div class="container">
+      <div class="process-layout">
+        <div class="process-text">
+          <span class="section-label">The Transformation</span>
+          <h2 class="section-title">RAW TO<br>HIGH GLOSS</h2>
+          <p class="section-desc">Every vehicle undergoes our meticulous multi-stage process. The result speaks for itself — a finish so deep, you can see the future in it.</p>
+          <div class="process-steps">
+            <div class="process-step">
+              <span class="step-num">01</span>
+              <div class="step-info">
+                <h4>Assessment &amp; Decontamination</h4>
+                <p>Full paint-depth analysis and iron/fallout decontamination to prepare a clean canvas.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <span class="step-num">02</span>
+              <div class="step-info">
+                <h4>Multi-Stage Correction</h4>
+                <p>Compound and polish stages to remove swirls, scratches, and oxidation from every panel.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <span class="step-num">03</span>
+              <div class="step-info">
+                <h4>Ceramic Armor</h4>
+                <p>Application of professional-grade ceramic coating for permanent hydrophobic protection.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <span class="step-num">04</span>
+              <div class="step-info">
+                <h4>Final Inspection</h4>
+                <p>LED-light tunnel inspection under controlled conditions to ensure absolute perfection.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="process-visual">
+          <div class="process-image-wrap">
+            <img src="assets/before-after.png" alt="Before and after detailing comparison" loading="lazy">
+            <div class="process-slider" id="processSlider"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section id="gallery">
+    <div class="container">
+      <div class="gallery-header">
+        <span class="section-label">Our Portfolio</span>
+        <h2 class="section-title">The Gallery</h2>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="assets/hero-car.png" alt="Detailed luxury sports car" loading="lazy">
+          <span>Ceramic Pro</span>
+        </div>
+        <div class="gallery-item">
+          <img src="assets/gallery-1.png" alt="Porsche GT3 after full detail" loading="lazy">
+          <span>Paint Correction</span>
+        </div>
+        <div class="gallery-item">
+          <img src="assets/gallery-2.png" alt="Mercedes AMG with ceramic coating" loading="lazy">
+          <span>Full Detail</span>
+        </div>
+        <div class="gallery-item">
+          <img src="assets/diamond-finish.png" alt="Diamond finish ceramic coating close-up" loading="lazy">
+          <span>Diamond Coat</span>
+        </div>
+        <div class="gallery-item">
+          <img src="assets/self-healing-wrap.png" alt="PPF application on supercar" loading="lazy">
+          <span>PPF Wrap</span>
+        </div>
+        <div class="gallery-item">
+          <img src="assets/interior-restoration.png" alt="Interior leather restoration" loading="lazy">
+          <span>Interior Detail</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Booking Section (was CTA, now full booking form) -->
+  <section id="booking">
+    <div class="container">
+      <div class="booking-layout">
+        <div class="booking-info">
+          <span class="section-label">Book Your Slot</span>
+          <h2 class="section-title">SCHEDULE YOUR<br>TRANSFORMATION</h2>
+          <p class="section-desc">Select your preferred service, date, and time. We'll confirm your appointment within 30 minutes.</p>
+          <div class="booking-perks">
+            <div class="perk"><span class="perk-icon">◆</span><span>Free vehicle inspection with every booking</span></div>
+            <div class="perk"><span class="perk-icon">◆</span><span>Complimentary interior fragrance treatment</span></div>
+            <div class="perk"><span class="perk-icon">◆</span><span>Pick-up & drop-off available</span></div>
+          </div>
+        </div>
+        <div class="booking-form-wrap">
+          <form class="booking-form" id="bookingForm">
+            <div class="form-group">
+              <label for="bookName">Full Name</label>
+              <input type="text" id="bookName" placeholder="Your name" required>
+            </div>
+            <div class="form-group">
+              <label for="bookPhone">Phone Number</label>
+              <input type="tel" id="bookPhone" placeholder="+91 98765 43210" required>
+            </div>
+            <div class="form-group">
+              <label for="bookService">Service</label>
+              <select id="bookService" required>
+                <option value="" disabled selected>Select a service</option>
+                <option value="diamond">Diamond Finish — Ceramic Coating</option>
+                <option value="ppf">Self-Healing PPF Wrap</option>
+                <option value="interior">Interior Restoration</option>
+                <option value="correction">Paint Correction</option>
+                <option value="full">Full Detail Package</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="bookDate">Preferred Date</label>
+                <input type="date" id="bookDate" required>
+              </div>
+              <div class="form-group">
+                <label for="bookTime">Time Slot</label>
+                <select id="bookTime" required>
+                  <option value="" disabled selected>Select time</option>
+                  <option value="09:00">09:00 AM</option>
+                  <option value="10:00">10:00 AM</option>
+                  <option value="11:00">11:00 AM</option>
+                  <option value="12:00">12:00 PM</option>
+                  <option value="14:00">02:00 PM</option>
+                  <option value="15:00">03:00 PM</option>
+                  <option value="16:00">04:00 PM</option>
+                  <option value="17:00">05:00 PM</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="bookNotes">Additional Notes (Optional)</label>
+              <textarea id="bookNotes" rows="3" placeholder="Any specific requirements..."></textarea>
+            </div>
+            <button type="submit" class="cta-btn" id="btn-cta-main">Confirm Booking</button>
+            <p class="form-disclaimer">We'll confirm your slot via WhatsApp or call within 30 minutes.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Location Section -->
+  <section id="location">
+    <div class="container">
+      <div class="location-layout">
+        <div class="location-info">
+          <span class="section-label">Find Us</span>
+          <h2 class="section-title">VISIT THE<br>STUDIO</h2>
+          <p class="section-desc">Experience the difference in person. Our state-of-the-art facility is equipped with controlled lighting bays and dust-free coating chambers.</p>
+          <div class="location-details">
+            <div class="loc-item">
+              <div class="loc-icon">⬡</div>
+              <div class="loc-text">
+                <h4>Address</h4>
+                <p>5-88, Jahangir Nagar Road<br>High Gloss Detailing Studio</p>
+              </div>
+            </div>
+            <div class="loc-item">
+              <div class="loc-icon">◎</div>
+              <div class="loc-text">
+                <h4>Hours</h4>
+                <p>Mon – Sat: 9:00 AM – 7:00 PM<br>Sunday: By Appointment</p>
+              </div>
+            </div>
+            <div class="loc-item">
+              <div class="loc-icon">✦</div>
+              <div class="loc-text">
+                <h4>Contact</h4>
+                <p>+91 98765 43210<br>info@highglossdetailing.com</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="map-wrap">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.0!2d78.4!3d17.4!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDI0JzAwLjAiTiA3OMKwMjQnMDAuMCJF!5e0!3m2!1sen!2sin!4v1" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="High Gloss Detailing Studio Location"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <div class="logo">HIGH<span>GLOSS</span></div>
+          <p>Premium automotive detailing studio dedicated to the art of perfection. Every vehicle deserves a flawless finish.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <a href="#services">Diamond Finish</a>
+          <a href="#services">Self-Healing Wraps</a>
+          <a href="#services">Interior Restoration</a>
+          <a href="#services">Paint Correction</a>
+        </div>
+        <div class="footer-col">
+          <h4>Studio</h4>
+          <a href="#process">Our Process</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#location">Location</a>
+          <a href="#contact-cta">Book Now</a>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram">IG</a>
+            <a href="#" aria-label="Facebook">FB</a>
+            <a href="#" aria-label="YouTube">YT</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 High Gloss Detailing Studio. All Rights Reserved.</span>
+        <span>Crafted with Precision</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Floating Button -->
+  <a href="https://wa.me/919876543210" target="_blank" rel="noopener" class="whatsapp-fab" id="whatsappFab" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 32 32" width="28" height="28" fill="#fff">
+      <path d="M16.004 0h-.008C7.174 0 0 7.176 0 16.004c0 3.502 1.14 6.738 3.068 9.362L1.06 31.29l6.166-1.976A15.92 15.92 0 0016.004 32C24.826 32 32 24.826 32 16.004 32 7.176 24.826 0 16.004 0zm9.302 22.602c-.388 1.094-1.938 2.002-3.172 2.266-.846.18-1.95.322-5.668-1.218-4.758-1.972-7.818-6.8-8.054-7.114-.228-.314-1.904-2.536-1.904-4.836s1.204-3.432 1.632-3.902c.428-.47.936-.588 1.248-.588.312 0 .624.002.896.016.288.014.674-.11 1.054.804.388.936 1.326 3.232 1.44 3.466.116.234.194.508.038.82-.156.314-.234.508-.468.782s-.49.612-.7.822c-.234.234-.476.488-.204.958s1.212 2.002 2.604 3.246c1.788 1.598 3.296 2.094 3.764 2.328.468.234.742.196 1.014-.118.272-.312 1.17-1.364 1.482-1.834.312-.468.624-.39 1.054-.234.428.156 2.724 1.284 3.192 1.518.468.234.78.35.896.546.116.194.116 1.132-.272 2.226z"/>
+    </svg>
+  </a>
+
+  <script src="script.js"></script>
+</body>
+</html>
