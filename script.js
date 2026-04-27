@@ -138,31 +138,65 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ── Before/After Slider (draggable reveal) ──
+  // ── Before/After Slider (clip-path drag reveal) ──
   const slider = document.getElementById('processSlider');
   const baAfterWrap = document.getElementById('baAfterWrap');
-  if (slider && baAfterWrap) {
-    const wrap = document.getElementById('beforeAfterWrap');
-    let isDragging = false;
+  const wrap = document.getElementById('beforeAfterWrap');
 
-    const setPosition = (clientX) => {
-      const rect = wrap.getBoundingClientRect();
-      let x = clientX - rect.left;
-      x = Math.max(0, Math.min(x, rect.width));
-      const pct = (x / rect.width) * 100;
+  if (slider && baAfterWrap && wrap) {
+    let isDragging = false;
+    let currentPct = 50;
+    let targetPct = 50;
+    let rafId = null;
+
+    // Apply position to both the line and the clip-path
+    const applyPosition = (pct) => {
       slider.style.left = pct + '%';
-      baAfterWrap.style.width = pct + '%';
+      // clip-path inset(top right bottom left) — right side clips from right edge
+      baAfterWrap.style.clipPath = `inset(0 ${100 - pct}% 0 0)`;
     };
 
-    slider.addEventListener('mousedown', (e) => { isDragging = true; e.preventDefault(); });
-    slider.addEventListener('touchstart', (e) => { isDragging = true; }, { passive: true });
-    window.addEventListener('mouseup', () => isDragging = false);
-    window.addEventListener('touchend', () => isDragging = false);
-    window.addEventListener('mousemove', (e) => { if (isDragging) setPosition(e.clientX); });
-    window.addEventListener('touchmove', (e) => { if (isDragging) setPosition(e.touches[0].clientX); }, { passive: true });
+    // Smooth rAF loop
+    const animate = () => {
+      currentPct += (targetPct - currentPct) * 0.12;
+      applyPosition(currentPct);
+      if (Math.abs(targetPct - currentPct) > 0.05) {
+        rafId = requestAnimationFrame(animate);
+      } else {
+        applyPosition(targetPct);
+        rafId = null;
+      }
+    };
 
-    // Also allow clicking anywhere on the wrap to jump
-    wrap.addEventListener('click', (e) => setPosition(e.clientX));
+    const setTarget = (clientX) => {
+      const rect = wrap.getBoundingClientRect();
+      let x = clientX - rect.left;
+      x = Math.max(2, Math.min(x, rect.width - 2));
+      targetPct = (x / rect.width) * 100;
+      if (!rafId) rafId = requestAnimationFrame(animate);
+    };
+
+    // Initialise at centre
+    applyPosition(50);
+
+    // Drag events
+    slider.addEventListener('mousedown', (e) => { isDragging = true; e.preventDefault(); });
+    wrap.addEventListener('mousedown', (e) => { isDragging = true; setTarget(e.clientX); });
+    window.addEventListener('mouseup', () => { isDragging = false; });
+    window.addEventListener('mousemove', (e) => { if (isDragging) setTarget(e.clientX); });
+
+    // Touch events
+    slider.addEventListener('touchstart', () => { isDragging = true; }, { passive: true });
+    wrap.addEventListener('touchstart', (e) => { isDragging = true; setTarget(e.touches[0].clientX); }, { passive: true });
+    window.addEventListener('touchend', () => { isDragging = false; });
+    window.addEventListener('touchmove', (e) => { if (isDragging) setTarget(e.touches[0].clientX); }, { passive: true });
+
+    // Intro animation — sweep from left to right then settle at 50%
+    setTimeout(() => {
+      targetPct = 80;
+      rafId = requestAnimationFrame(animate);
+      setTimeout(() => { targetPct = 50; if (!rafId) rafId = requestAnimationFrame(animate); }, 900);
+    }, 3500);
   }
 
   // ── Booking form handler ──
