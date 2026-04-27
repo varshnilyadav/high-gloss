@@ -236,4 +236,100 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // ── Testimonials Slider ──
+  const testiTrack = document.getElementById('testiTrack');
+  const testiWrap  = document.getElementById('testiSliderWrap');
+  const testiDots  = document.getElementById('testiDots');
+  const prevBtn    = document.getElementById('testiPrev');
+  const nextBtn    = document.getElementById('testiNext');
+
+  if (testiTrack && prevBtn && nextBtn) {
+    const cards      = testiTrack.querySelectorAll('.testi-card');
+    const total      = cards.length;
+    let   index      = 0;
+    let   autoTimer  = null;
+    let   touchStart = 0;
+
+    // Work out how many cards are visible at current viewport
+    const visibleCount = () => {
+      const w = window.innerWidth;
+      if (w <= 480) return 1;
+      if (w <= 768) return 2;
+      return 3;
+    };
+
+    const maxIndex = () => Math.max(0, total - visibleCount());
+
+    // Build dots
+    const buildDots = () => {
+      testiDots.innerHTML = '';
+      const count = maxIndex() + 1;
+      for (let i = 0; i < count; i++) {
+        const d = document.createElement('button');
+        d.className = 'testi-dot' + (i === index ? ' active' : '');
+        d.setAttribute('aria-label', `Go to review ${i + 1}`);
+        d.addEventListener('click', () => goTo(i));
+        testiDots.appendChild(d);
+      }
+    };
+
+    const updateDots = () => {
+      testiDots.querySelectorAll('.testi-dot').forEach((d, i) => {
+        d.classList.toggle('active', i === index);
+      });
+    };
+
+    const goTo = (i) => {
+      index = Math.max(0, Math.min(i, maxIndex()));
+      // Each card width = track width / visibleCount
+      const cardW = testiWrap.offsetWidth / visibleCount();
+      testiTrack.style.transform = `translateX(-${index * (cardW + 24)}px)`;
+      updateDots();
+      prevBtn.disabled = index === 0;
+      nextBtn.disabled = index >= maxIndex();
+    };
+
+    const next = () => goTo(index < maxIndex() ? index + 1 : 0);
+    const prev = () => goTo(index > 0 ? index - 1 : maxIndex());
+
+    prevBtn.addEventListener('click', () => { prev(); resetAuto(); });
+    nextBtn.addEventListener('click', () => { next(); resetAuto(); });
+
+    // Auto-play
+    const startAuto = () => { autoTimer = setInterval(next, 5000); };
+    const stopAuto  = () => { clearInterval(autoTimer); };
+    const resetAuto = () => { stopAuto(); startAuto(); };
+
+    testiWrap.addEventListener('mouseenter', stopAuto);
+    testiWrap.addEventListener('mouseleave', startAuto);
+
+    // Touch swipe
+    testiWrap.addEventListener('touchstart', (e) => {
+      touchStart = e.touches[0].clientX;
+      stopAuto();
+    }, { passive: true });
+    testiWrap.addEventListener('touchend', (e) => {
+      const diff = touchStart - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 50) diff > 0 ? next() : prev();
+      startAuto();
+    }, { passive: true });
+
+    // Keyboard
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') { next(); resetAuto(); }
+      if (e.key === 'ArrowLeft')  { prev(); resetAuto(); }
+    });
+
+    // Rebuild on resize
+    window.addEventListener('resize', () => {
+      buildDots();
+      goTo(Math.min(index, maxIndex()));
+    });
+
+    // Init
+    buildDots();
+    goTo(0);
+    startAuto();
+  }
+
 });
