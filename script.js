@@ -1,4 +1,4 @@
-/* ===== High Gloss Detailing Studio — GSAP Animations & Interactions ===== */
+/* ===== Detailing Masters — GSAP Animations & Interactions ===== */
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -138,28 +138,31 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ── Before/After Slider ──
+  // ── Before/After Slider (draggable reveal) ──
   const slider = document.getElementById('processSlider');
-  if (slider) {
-    const wrap = slider.parentElement;
+  const baAfterWrap = document.getElementById('baAfterWrap');
+  if (slider && baAfterWrap) {
+    const wrap = document.getElementById('beforeAfterWrap');
     let isDragging = false;
 
-    const moveSlider = (e) => {
-      if (!isDragging) return;
+    const setPosition = (clientX) => {
       const rect = wrap.getBoundingClientRect();
-      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
       let x = clientX - rect.left;
       x = Math.max(0, Math.min(x, rect.width));
       const pct = (x / rect.width) * 100;
       slider.style.left = pct + '%';
+      baAfterWrap.style.width = pct + '%';
     };
 
-    slider.addEventListener('mousedown', () => isDragging = true);
-    slider.addEventListener('touchstart', () => isDragging = true);
+    slider.addEventListener('mousedown', (e) => { isDragging = true; e.preventDefault(); });
+    slider.addEventListener('touchstart', (e) => { isDragging = true; }, { passive: true });
     window.addEventListener('mouseup', () => isDragging = false);
     window.addEventListener('touchend', () => isDragging = false);
-    window.addEventListener('mousemove', moveSlider);
-    window.addEventListener('touchmove', moveSlider);
+    window.addEventListener('mousemove', (e) => { if (isDragging) setPosition(e.clientX); });
+    window.addEventListener('touchmove', (e) => { if (isDragging) setPosition(e.touches[0].clientX); }, { passive: true });
+
+    // Also allow clicking anywhere on the wrap to jump
+    wrap.addEventListener('click', (e) => setPosition(e.clientX));
   }
 
   // ── Booking form handler ──
@@ -182,10 +185,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const notes = document.getElementById('bookNotes').value;
 
       // Build WhatsApp message
-      const msg = `Hi! I'd like to book a slot at High Gloss Detailing Studio.%0A%0A*Name:* ${encodeURIComponent(name)}%0A*Phone:* ${encodeURIComponent(phone)}%0A*Service:* ${encodeURIComponent(service)}%0A*Date:* ${encodeURIComponent(date)}%0A*Time:* ${encodeURIComponent(time)}${notes ? '%0A*Notes:* ' + encodeURIComponent(notes) : ''}`;
+      const msg = `Hi! I'd like to book a slot at Detailing Masters.%0A%0A*Name:* ${encodeURIComponent(name)}%0A*Phone:* ${encodeURIComponent(phone)}%0A*Service:* ${encodeURIComponent(service)}%0A*Date:* ${encodeURIComponent(date)}%0A*Time:* ${encodeURIComponent(time)}${notes ? '%0A*Notes:* ' + encodeURIComponent(notes) : ''}`;
 
       // Open WhatsApp with pre-filled message
-      window.open(`https://wa.me/919966611353?text=${msg}`, '_blank');
+      window.open(`https://wa.me/08977306032?text=${msg}`, '_blank');
 
       // Show confirmation
       const btn = document.getElementById('btn-cta-main');
