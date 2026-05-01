@@ -130,19 +130,45 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    // Testimonials
-    gsap.utils.toArray('.testi-card').forEach((card, i) => {
-      gsap.from(card, {
-        opacity: 0,
-        y: 30,
-        duration: 0.8,
-        delay: i * 0.1,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: '.testi-grid',
-          start: 'top 85%',
+    // Stats Count Up Animation
+    const statValues = document.querySelectorAll('.stat-value');
+    statValues.forEach(el => {
+      let target = parseFloat(el.getAttribute('data-target'));
+      let isFloat = target % 1 !== 0;
+      
+      ScrollTrigger.create({
+        trigger: '.stats-section',
+        start: 'top 80%',
+        once: true,
+        onEnter: () => {
+          gsap.to(el, {
+            innerHTML: target,
+            duration: 2,
+            ease: 'power2.out',
+            snap: { innerHTML: isFloat ? 0.1 : 1 },
+            onUpdate: function() {
+              if (isFloat) {
+                el.innerHTML = Number(this.targets()[0].innerHTML).toFixed(1);
+              } else {
+                el.innerHTML = Math.round(this.targets()[0].innerHTML).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+              }
+            }
+          });
         }
       });
+    });
+
+    // Testimonials Horizontal Slider Cards
+    gsap.from('.testi-slide-card', {
+      opacity: 0,
+      x: 50,
+      duration: 0.8,
+      stagger: 0.15,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: '.testimonial-section',
+        start: 'top 80%',
+      }
     });
 
     // Contact Form
