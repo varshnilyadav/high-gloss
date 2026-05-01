@@ -3,20 +3,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- Preloader ---
   const preloader = document.getElementById('preloader');
+
+  function hidePreloader() {
+    preloader.classList.add('hidden');
+    try { initGSAP(); } catch(e) { console.warn('GSAP init error:', e); }
+  }
+
   window.addEventListener('load', () => {
-    setTimeout(() => {
-      preloader.classList.add('hidden');
-      initGSAP();
-    }, 1500); // Wait for the bar to finish
+    setTimeout(hidePreloader, 1500);
   });
 
-  // Fallback if load event doesn't fire
+  // Hard fallback — always hides preloader after 2.5s no matter what
   setTimeout(() => {
-    if(!preloader.classList.contains('hidden')) {
-      preloader.classList.add('hidden');
-      initGSAP();
+    if (!preloader.classList.contains('hidden')) {
+      hidePreloader();
     }
-  }, 3000);
+  }, 2500);
 
   // --- Header Scroll ---
   const header = document.getElementById('header');
