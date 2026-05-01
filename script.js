@@ -158,18 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    // Testimonials Horizontal Slider Cards
-    gsap.from('.testi-slide-card', {
-      opacity: 0,
-      x: 50,
-      duration: 0.8,
-      stagger: 0.15,
-      ease: 'power3.out',
-      scrollTrigger: {
-        trigger: '.testimonial-section',
-        start: 'top 80%',
-      }
-    });
+    // Testimonials are now controlled by pure CSS marquee animation
 
     // Contact Form
     gsap.from('.contact-info', {

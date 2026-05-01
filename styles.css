@@ -217,11 +217,11 @@ a {
   background: linear-gradient(to right, rgba(5,5,5,0.9) 0%, rgba(5,5,5,0.4) 50%, rgba(5,5,5,0.8) 100%);
 }
 .hero-content {
-  max-width: 800px;
-  padding-left: 20px;
+  max-width: 1200px;
+  padding: 0 20px;
   margin: 0 auto;
   width: 100%;
-  max-width: 1200px;
+  text-align: center;
 }
 .hero-tagline {
   font-family: var(--font-heading);
@@ -236,7 +236,7 @@ a {
   transform: translateY(20px);
 }
 .hero-title {
-  font-size: clamp(40px, 6vw, 80px);
+  font-size: clamp(3rem, 12vw, 6rem);
   font-weight: 800;
   line-height: 1.1;
   margin-bottom: 30px;
@@ -250,12 +250,13 @@ a {
 .hero-sub {
   font-size: 18px;
   max-width: 600px;
-  margin-bottom: 40px;
+  margin: 0 auto 40px auto;
   opacity: 0;
   transform: translateY(20px);
 }
 .hero-actions {
   display: flex;
+  justify-content: center;
   gap: 20px;
   opacity: 0;
   transform: translateY(20px);
@@ -821,26 +822,21 @@ footer {
 }
 .testi-slider-container {
   width: 100%;
-  overflow-x: auto;
+  overflow: hidden;
   padding-bottom: 40px;
-  /* hide scrollbar */
-  scrollbar-width: none; 
-  -ms-overflow-style: none;
-}
-.testi-slider-container::-webkit-scrollbar {
-  display: none;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
 }
 .testi-slider-track {
   display: flex;
-  gap: 30px;
-  padding: 0 20px;
-  width: max-content;
+  width: fit-content;
+  animation: marquee-scroll 40s linear infinite;
 }
-/* Ensure the first card aligns with the container left edge */
-.testi-slider-track::before,
-.testi-slider-track::after {
-  content: '';
-  width: max(0px, calc((100vw - 1200px) / 2));
+.testi-slider-track .marquee-content {
+  display: flex;
+  gap: 30px;
+  padding: 0 15px;
+  flex-shrink: 0;
 }
 
 .testi-slide-card {
@@ -946,10 +942,10 @@ footer {
 }
 .brand-item {
   font-family: var(--font-heading);
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: 1rem;
   font-weight: 700;
-  color: var(--text-main);
-  margin-right: 80px;
+  color: var(--text-muted);
+  margin-right: 60px;
   white-space: nowrap;
   letter-spacing: 2px;
 }
@@ -957,4 +953,53 @@ footer {
 @keyframes marquee-scroll {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
+}
+/* Booking Form Section */
+.booking-section {
+  padding: 60px 0;
+  background: var(--surface-color);
+}
+.mobile-booking-form {
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.form-group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-main);
+  letter-spacing: 1px;
+}
+.form-group input,
+.form-group select {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 15px;
+  background: var(--bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  color: var(--text-main);
+  font-family: inherit;
+  font-size: 16px;
+}
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--primary-gold);
+}
+.btn-block {
+  width: 100%;
+  text-align: center;
+  margin-top: 10px;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
