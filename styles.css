@@ -645,6 +645,28 @@ footer {
   border-top: 1px solid rgba(255,255,255,0.05);
   font-size: 14px;
 }
+.designer-credit {
+  margin-top: 12px;
+  font-family: var(--font-heading);
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.2);
+}
+.designer-name {
+  background: linear-gradient(90deg, #B8960F, #E8B953, #ffe066, #E8B953, #B8960F);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: glossyShift 4s linear infinite;
+  font-weight: 800;
+  letter-spacing: 6px;
+}
+@keyframes glossyShift {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
 
 /* Floating Actions */
 .floating-actions {
