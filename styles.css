@@ -1,16 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap');
 
 :root {
-  --bg-color: #050505;
-  --surface-color: #121212;
-  --surface-light: #1E1E1E;
-  --primary-gold: #E8B953;
-  --gold-glow: rgba(232, 185, 83, 0.3);
+  --bg-color: #050508;
+  --surface-color: #0C0C12;
+  --surface-light: #161620;
+  --primary-gold: #00D4FF;
+  --primary-dark: #0099BB;
+  --gold-glow: rgba(0, 212, 255, 0.3);
+  --accent-teal: #1B8A9E;
   --text-main: #FFFFFF;
-  --text-muted: #A0A0A0;
+  --text-muted: #A0A8B4;
   --font-heading: 'Outfit', sans-serif;
   --font-body: 'Inter', sans-serif;
-  --border-color: rgba(255, 255, 255, 0.05);
+  --border-color: rgba(0, 212, 255, 0.06);
 }
 
 * {
@@ -53,7 +55,9 @@ a {
 .site-bg {
   position: fixed;
   inset: 0;
-  background: radial-gradient(circle at 50% 0%, #1a1a1a 0%, #050505 60%);
+  background: radial-gradient(ellipse at 30% 0%, rgba(0, 60, 80, 0.15) 0%, transparent 50%),
+              radial-gradient(ellipse at 70% 100%, rgba(0, 120, 160, 0.08) 0%, transparent 50%),
+              #050508;
   z-index: -1;
   pointer-events: none;
 }
@@ -62,39 +66,74 @@ a {
 #preloader {
   position: fixed;
   inset: 0;
-  background: var(--bg-color);
+  background: #050508;
   z-index: 9999;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.6s ease, visibility 0.6s;
 }
 #preloader.hidden {
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
 }
-.loader-logo {
-  font-size: clamp(1.2rem, 5vw, 2.5rem);
-  font-weight: 700;
-  letter-spacing: 4px;
-  margin-bottom: 20px;
-  white-space: nowrap;
+
+/* Logo image in preloader */
+.loader-logo-img {
+  width: clamp(180px, 50vw, 320px);
+  margin-bottom: 30px;
+  filter: drop-shadow(0 0 30px rgba(0, 212, 255, 0.4)) drop-shadow(0 0 60px rgba(0, 150, 200, 0.2));
+  animation: logoGloss 3s ease-in-out infinite;
 }
-.loader-logo span {
-  color: var(--primary-gold);
+@keyframes logoGloss {
+  0%, 100% {
+    filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.3)) drop-shadow(0 0 50px rgba(0, 150, 200, 0.15));
+    transform: scale(1);
+  }
+  50% {
+    filter: drop-shadow(0 0 40px rgba(0, 212, 255, 0.6)) drop-shadow(0 0 80px rgba(0, 150, 200, 0.3));
+    transform: scale(1.02);
+  }
 }
+
+/* Glossy tagline */
+.loader-tagline {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+  background: linear-gradient(90deg, #0099BB, #00D4FF, #7AEEFF, #00D4FF, #0099BB);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: taglineShift 3s linear infinite;
+}
+@keyframes taglineShift {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Progress bar */
 .loader-bar-track {
   width: 200px;
   height: 2px;
-  background: var(--surface-light);
+  background: rgba(0, 212, 255, 0.1);
+  border-radius: 2px;
   overflow: hidden;
+  position: relative;
 }
 .loader-bar {
   width: 0%;
   height: 100%;
-  background: var(--primary-gold);
+  background: linear-gradient(90deg, var(--primary-dark), var(--primary-gold));
+  border-radius: 2px;
   animation: loadProgress 2s ease-in-out forwards;
+  box-shadow: 0 0 12px var(--gold-glow);
 }
 
 @keyframes loadProgress {
@@ -126,19 +165,15 @@ a {
   margin: 0 auto;
   padding: 0 20px;
 }
-.logo {
-  font-size: 18px;
-  font-weight: 800;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  z-index: 101;
-}
-.logo span {
-  color: var(--primary-gold);
-  font-weight: 300;
+.nav-logo-img {
+  height: 80px;
+  width: auto;
+  object-fit: contain;
   display: block;
-  font-size: 12px;
-  letter-spacing: 4px;
+  transition: transform 0.3s;
+}
+.nav-logo-img:hover {
+  transform: scale(1.05);
 }
 .nav-links {
   display: flex;
@@ -617,12 +652,41 @@ footer {
   gap: 40px;
   margin-bottom: 60px;
 }
-.footer-brand .logo {
+.footer-logo {
   margin-bottom: 20px;
   display: inline-block;
 }
+.footer-logo-img {
+  height: 80px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
 .footer-brand p {
   max-width: 300px;
+  margin-bottom: 25px;
+}
+.social-links {
+  display: flex;
+  gap: 15px;
+}
+.social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.05);
+  color: var(--text-muted);
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+.social-links a:hover {
+  background: var(--primary-gold);
+  color: var(--bg-color);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px var(--gold-glow);
 }
 .footer-links h4 {
   margin-bottom: 25px;
@@ -654,7 +718,7 @@ footer {
   color: rgba(255,255,255,0.2);
 }
 .designer-name {
-  background: linear-gradient(90deg, #B8960F, #E8B953, #ffe066, #E8B953, #B8960F);
+  background: linear-gradient(90deg, #0099BB, #00D4FF, #7AEEFF, #00D4FF, #0099BB);
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
